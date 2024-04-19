@@ -1,5 +1,4 @@
 import * as faceapi from "face-api.js";
-import example from "./assets/example.webp";
 
 const SIZE_SCALE = 0.75;
 
@@ -15,11 +14,11 @@ export class Googly {
     await faceapi.nets.ssdMobilenetv1.loadFromUri("/");
   }
 
-  async loadImage(url: string) {
+  async loadImage(src: string) {
     return new Promise<HTMLImageElement>((res) => {
       const image = new Image();
       image.onload = () => res(image);
-      image.src = url;
+      image.src = src;
     });
   }
 
@@ -46,18 +45,16 @@ export class Googly {
     return { xPos, yPos, radius, xWidth, yWidth };
   }
 
-  async process() {
-    const exampleImage = await this.loadImage(example);
-    const detections = await faceapi.detectAllFaces(exampleImage).withFaceLandmarks();
+  async process(image: HTMLImageElement | string) {
+    const img = typeof image === "string" ? await this.loadImage(image) : image;
+    const detections = await faceapi.detectAllFaces(img).withFaceLandmarks();
 
-    const parent = document.querySelector("#parent")!;
     const canvas = document.createElement("canvas");
-    canvas.width = exampleImage.width;
-    canvas.height = exampleImage.height;
-    parent.appendChild(canvas);
+    canvas.width = img.width;
+    canvas.height = img.height;
 
     const ctx = canvas.getContext("2d")!;
-    ctx.drawImage(exampleImage, 0, 0);
+    ctx.drawImage(img, 0, 0);
 
     const eyeProps = detections
       .map((d) => [
@@ -84,5 +81,7 @@ export class Googly {
       ctx.arc(pupilX, pupilY, pupilRadius, 0, Math.PI * 2);
       ctx.fill();
     });
+
+    return await this.loadImage(canvas.toDataURL("image/jpeg"));
   }
 }

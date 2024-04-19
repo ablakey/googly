@@ -1,9 +1,9 @@
 {
-  "name": "RENAME_ME",
+  "name": "googly",
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "vite ./src",
+    "start": "vite",
     "build": "vite build ./src"
   },
   "author": "Andrew Blakey",

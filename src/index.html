@@ -8,8 +8,18 @@
     />
   </head>
   <body>
+    <link rel="prefetch" href="/face_landmark_68_model-shard1" />
+    <link rel="prefetch" href="/ssd_mobilenetv1_model-shard1" />
+    <link rel="prefetch" href="/ssd_mobilenetv1_model-shard2" />
+    <link rel="prefetch" href="/face_landmark_68_model-weights_manifest.json" />
+    <link rel="prefetch" href="/ssd_mobilenetv1_model-weights_manifest.json" />
     <link rel="stylesheet" href="styles.css" type="text/css" />
     <script type="module" src="main.ts"></script>
-    <div id="parent"></div>
+    <div class="container">
+      <h1>Googly</h1>
+      <input type="file" id="imgInput" accept="image/*" />
+      <label for="imgInput">Pick an image</label>
+      <div class="imageFrame"></div>
+    </div>
   </body>
 </html>
