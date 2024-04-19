@@ -4,7 +4,7 @@ module.exports = {
     host: true,
   },
   build: {
-    outDir: "dist",
+    outDir: "../dist",
   },
   publicDir: "./lib/models",
 };
