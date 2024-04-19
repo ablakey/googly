@@ -38,5 +38,8 @@
     "prettier": "^3.2.5",
     "typescript": "^5.4.5",
     "vite": "^5.2.9"
+  },
+  "dependencies": {
+    "face-api.js": "^0.22.2"
   }
 }
