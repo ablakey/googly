@@ -10,8 +10,8 @@ export class Googly {
   consructor() {}
 
   async load() {
-    await faceapi.nets.faceLandmark68Net.loadFromUri("/");
-    await faceapi.nets.ssdMobilenetv1.loadFromUri("/");
+    await faceapi.nets.faceLandmark68Net.loadFromUri("./");
+    await faceapi.nets.ssdMobilenetv1.loadFromUri("./");
   }
 
   async loadImage(src: string) {
